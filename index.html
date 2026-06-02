@@ -1418,12 +1418,7 @@ html[lang="ar"] .footer-bottom p { font-family: 'Cairo', sans-serif; }
 @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
 
-/* ─── GLOBAL SECTION PADDING MOBILE ─── */
-@media (max-width: 768px) {
-  #apropos, #equipe, #services, #references, #differences, #contact {
-    padding: var(--pad-v-m) 0;
-  }
-}
+/* ─── GLOBAL SECTION PADDING MOBILE (legacy — overridden by fluid system below) ─── */
 
 /* ════════════════════════════════════════════════════
    COMPREHENSIVE RESPONSIVE FIXES
@@ -1631,6 +1626,420 @@ img, video, iframe, embed, object { max-width: 100%; height: auto; }
 .country-label, .equip-heading, .equip-cat-name {
   overflow-wrap: break-word;
   word-break: break-word;
+}
+
+/* ════════════════════════════════════════════════════════════
+   PREMIUM RESPONSIVE DESIGN SYSTEM v3.0
+   Mobile-first • Fluid • Production-grade
+════════════════════════════════════════════════════════════ */
+
+/* ─── CSS FLUID SPACING TOKENS ─── */
+:root {
+  /* Fluid section padding using clamp */
+  --section-pad: clamp(48px, 8vw, 120px);
+  --section-pad-sm: clamp(32px, 5vw, 72px);
+  /* Fluid card padding */
+  --card-pad: clamp(18px, 3.5vw, 44px);
+  --card-pad-sm: clamp(14px, 2.5vw, 28px);
+  /* Fluid gap */
+  --gap-xl: clamp(14px, 2.5vw, 24px);
+  --gap-lg: clamp(10px, 1.8vw, 20px);
+  /* Fluid border radius */
+  --radius-xl: clamp(16px, 2vw, 24px);
+  --radius-lg: clamp(12px, 1.5vw, 18px);
+  /* Fluid max width for content */
+  --content-max: 1240px;
+  /* Nav height token */
+  --nav-h: 72px;
+}
+
+/* ─── ULTRAWIDE & LARGE DESKTOP (≥ 1440px) ─── */
+@media (min-width: 1440px) {
+  :root { --max-w: 1280px; }
+  .container { padding: 0 48px; }
+  #hero .hero-content { padding-top: 140px; padding-bottom: 100px; }
+  .apropos-bento { gap: 24px; }
+  .services-bento { gap: 24px; }
+  .team-grid { gap: 22px; }
+  .refs-countries { gap: 28px; }
+  .footer-grid { gap: 72px; }
+}
+
+/* ─── STANDARD DESKTOP (1200px – 1440px) ─── */
+@media (min-width: 1200px) and (max-width: 1439px) {
+  .container { padding: 0 44px; }
+}
+
+/* ─── WIDE TABLET / SMALL DESKTOP (900px – 1199px) ─── */
+@media (min-width: 900px) and (max-width: 1199px) {
+  :root { --nav-h: 68px; }
+  .container { padding: 0 32px; }
+  .hero-title { font-size: clamp(48px, 7vw, 80px); }
+  .hero-content { max-width: 100%; padding: 120px 0 80px; }
+  .nav-links { gap: 24px; }
+  .apropos-bento { grid-template-columns: 1.3fr 1fr; }
+  .apropos-main-card { padding: 38px 34px; }
+  .services-bento { grid-template-columns: 1fr 1.1fr 1fr; gap: 16px; }
+  .svc-card { padding: 32px 26px; }
+  .team-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .team-card { padding: 28px 22px; }
+  .refs-countries { gap: 18px; }
+  .equip-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .contact-bento { grid-template-columns: 1fr 1.3fr; }
+  .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; gap: 44px; }
+}
+
+/* ─── TABLET (768px – 899px) ─── */
+@media (min-width: 768px) and (max-width: 899px) {
+  :root { --nav-h: 64px; }
+  .container { padding: 0 24px; }
+  .nav-inner { height: var(--nav-h); }
+  /* Hero */
+  .hero-content { padding: 108px 0 72px; max-width: 100%; }
+  .hero-title { font-size: clamp(42px, 8.5vw, 72px); line-height: 0.95; }
+  .hero-subtitle { font-size: 15.5px; }
+  .hero-buttons { gap: 12px; margin-bottom: 56px; }
+  /* About */
+  .apropos-bento { grid-template-columns: 1fr; gap: 16px; }
+  .apropos-main-card { padding: 32px 28px; grid-column: 1; grid-row: auto; }
+  .apropos-photo-card { grid-column: 1; grid-row: auto; min-height: 200px; }
+  .apropos-compliance-card { grid-column: 1; grid-row: auto; padding: 22px 24px; }
+  .apropos-stats-row { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  /* Team */
+  .team-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .team-card { padding: 26px 22px; }
+  .equipe-header { margin-bottom: 40px; }
+  /* Services */
+  .services-bento { grid-template-columns: 1fr; gap: 16px; }
+  .svc-card { padding: 30px 26px; }
+  .services-header { margin-bottom: 40px; }
+  /* References */
+  .refs-countries { grid-template-columns: 1fr; gap: 16px; }
+  .refs-country-card { padding: 30px 26px; }
+  .equip-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .equip-section { padding: 32px 26px; }
+  .ref-photos { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  /* Why us */
+  .comparison-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 18px; }
+  .comparison-table { min-width: 540px; }
+  .comparison-table thead th, .comparison-table tbody td { padding: 16px 20px; font-size: 13.5px; }
+  .diff-quote-card { padding: 26px 28px; gap: 16px; }
+  /* Contact */
+  .contact-bento { grid-template-columns: 1fr; gap: 16px; }
+  .contact-info-card { padding: 30px 26px; }
+  .form-placeholder { min-height: 180px; padding: 30px; }
+  .contact-badges { gap: 10px; }
+  /* Footer */
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; padding-bottom: 48px; }
+  footer { padding: 52px 0 0; }
+}
+
+/* ─── LARGE MOBILE (480px – 767px) ─── */
+@media (min-width: 480px) and (max-width: 767px) {
+  :root { --nav-h: 60px; }
+  .container { padding: 0 18px; }
+  .nav-inner { height: var(--nav-h); }
+  .logo-text { font-size: 18px; }
+  /* Hero */
+  .hero-content { padding: 96px 0 60px; max-width: 100%; }
+  .hero-title { font-size: clamp(38px, 10vw, 60px); line-height: 0.95; }
+  .hero-subtitle { font-size: 15px; margin-bottom: 32px; }
+  .hero-buttons { gap: 10px; margin-bottom: 44px; flex-direction: row; flex-wrap: wrap; }
+  .btn-primary, .btn-secondary { flex: 1 1 auto; justify-content: center; min-width: 140px; padding: 14px 22px; font-size: 13.5px; }
+  .hero-label { margin-bottom: 22px; }
+  /* Hero stats */
+  .hero-stats { flex-direction: column; gap: 20px; }
+  .stat-item { border: none !important; padding: 0 !important; margin: 0 !important; }
+  /* About */
+  .apropos-bento { grid-template-columns: 1fr; gap: 14px; }
+  .apropos-main-card { padding: 26px 22px; }
+  .apropos-photo-card { min-height: 190px; }
+  .apropos-compliance-card { padding: 20px 20px; }
+  .apropos-stats-row { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .astat-card { padding: 22px 16px; }
+  .astat-number { font-size: 26px; }
+  /* Team */
+  .team-grid { grid-template-columns: 1fr; gap: 12px; }
+  .team-card { padding: 26px 22px; }
+  .team-banner { padding: 22px 20px; flex-wrap: wrap; gap: 12px; }
+  /* Services */
+  .services-bento { grid-template-columns: 1fr; gap: 14px; }
+  .svc-card { padding: 26px 22px; }
+  .svc-title { font-size: 17px; margin-bottom: 20px; }
+  .services-header { margin-bottom: 36px; }
+  /* References */
+  .refs-countries { grid-template-columns: 1fr; gap: 14px; }
+  .refs-country-card { padding: 24px 20px; }
+  .equip-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .equip-section { padding: 24px 20px; }
+  .equip-heading { font-size: 18px; margin-bottom: 22px; }
+  .ref-photos { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  /* Comparison */
+  .comparison-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 16px; }
+  .comparison-table { min-width: 480px; }
+  .comparison-table thead th, .comparison-table tbody td { padding: 14px 16px; font-size: 13px; }
+  .diff-quote-card { padding: 20px 20px; gap: 12px; }
+  .diff-quote-mark { font-size: 44px; }
+  .diff-quote-text { font-size: 14px; }
+  /* Contact */
+  .contact-bento { grid-template-columns: 1fr; gap: 14px; }
+  .contact-info-card { padding: 26px 20px; }
+  .form-placeholder { min-height: 160px; padding: 26px 20px; }
+  .contact-badges { gap: 8px; flex-wrap: wrap; justify-content: center; }
+  .badge { font-size: 12.5px; padding: 9px 18px; }
+  /* Footer */
+  .footer-grid { grid-template-columns: 1fr; gap: 30px; padding-bottom: 40px; }
+  footer { padding: 44px 0 0; }
+  /* Section headings */
+  .section-heading { font-size: clamp(26px, 7vw, 38px); }
+  .section-sub { font-size: 15px; }
+}
+
+/* ─── SMALL MOBILE (360px – 479px) ─── */
+@media (max-width: 479px) {
+  :root { --nav-h: 58px; }
+  .container { padding: 0 15px; }
+  .nav-inner { height: var(--nav-h); }
+  .logo-text { font-size: 16px; }
+  .logo-icon { width: 30px; height: 30px; border-radius: 8px; }
+  /* Hero */
+  .hero-content { padding: 88px 0 52px; }
+  .hero-title { font-size: clamp(34px, 11vw, 52px); line-height: 0.95; }
+  .hero-subtitle { font-size: 14px; margin-bottom: 28px; }
+  .hero-buttons { flex-direction: column; gap: 10px; margin-bottom: 40px; align-items: stretch; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; padding: 14px 20px; font-size: 13px; }
+  .hero-label { margin-bottom: 20px; }
+  .hero-label-pill { padding: 5px 12px; }
+  .hero-label-text { font-size: 10.5px; }
+  /* Hero stats */
+  .hero-stats { flex-direction: column; gap: 18px; }
+  .stat-item { border: none !important; padding: 0 !important; margin: 0 !important; }
+  .stat-number { font-size: clamp(28px, 8vw, 44px); }
+  /* Section headings */
+  .section-heading { font-size: clamp(24px, 8vw, 34px); }
+  .section-sub { font-size: 14.5px; }
+  .eyebrow { font-size: 10px; }
+  /* About */
+  .apropos-bento { gap: 12px; }
+  .apropos-main-card { padding: 22px 16px; }
+  .apropos-main-card p { font-size: 14px; }
+  .apropos-photo-card { min-height: 170px; }
+  .img-placeholder { min-height: 170px; font-size: 11px; }
+  .apropos-compliance-card { padding: 16px 16px; }
+  .compliance-badge { font-size: 11px; padding: 6px 10px; }
+  .apropos-stats-row { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .astat-card { padding: 18px 12px; }
+  .astat-number { font-size: 22px; }
+  .astat-label { font-size: 11px; }
+  /* Team */
+  .equipe-header { margin-bottom: 30px; }
+  .team-card { padding: 22px 16px; }
+  .team-icon { width: 38px; height: 38px; font-size: 16px; }
+  .team-role { font-size: 14.5px; }
+  .team-desc { font-size: 12.5px; }
+  .team-banner { padding: 18px 16px; gap: 10px; }
+  .team-banner-text { font-size: 13px; }
+  /* Services */
+  .services-header { margin-bottom: 28px; }
+  .svc-card { padding: 22px 16px; }
+  .svc-title { font-size: 15.5px; margin-bottom: 16px; }
+  .price-row { flex-direction: column; gap: 2px; padding: 9px 0; }
+  .price-name { font-size: 12px; }
+  .price-val { font-size: 12px; color: var(--cyan); }
+  .svc-list li { font-size: 13px; }
+  .svc-footer { font-size: 11px; margin-top: 16px; }
+  /* References */
+  .refs-header { margin-bottom: 30px; }
+  .refs-country-card { padding: 20px 16px; }
+  .country-label { font-size: 16px; margin-bottom: 16px; }
+  .ref-list li { font-size: 13px; padding: 8px 0; }
+  .equip-section { padding: 20px 16px; margin-bottom: 16px; }
+  .equip-heading { font-size: 16px; margin-bottom: 16px; }
+  .equip-grid { grid-template-columns: 1fr; gap: 10px; }
+  .equip-category { padding: 14px 16px; }
+  .equip-cat-name { font-size: 11px; }
+  .equip-tag { font-size: 10px; }
+  .ref-photos { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  /* Comparison */
+  .comparison-wrapper { border-radius: 14px; }
+  .comparison-table { min-width: 420px; }
+  .comparison-table thead th, .comparison-table tbody td { padding: 12px 14px; font-size: 12px; }
+  .diff-header { margin-bottom: 28px; }
+  .diff-quote-card { padding: 18px 16px; gap: 10px; }
+  .diff-quote-mark { font-size: 38px; margin-top: -8px; }
+  .diff-quote-text { font-size: 13px; }
+  /* Contact */
+  .contact-header { margin-bottom: 28px; }
+  .contact-info-card { padding: 22px 16px; }
+  .contact-label { font-size: 9px; letter-spacing: 0.1em; }
+  .contact-value { font-size: 13.5px; }
+  .contact-line { margin-bottom: 18px; }
+  .form-placeholder { padding: 20px 16px; min-height: 140px; }
+  .form-placeholder span { font-size: 12px; }
+  .contact-badges { flex-direction: column; align-items: center; gap: 8px; }
+  .badge { width: 100%; max-width: 260px; justify-content: center; font-size: 12px; padding: 9px 16px; }
+  /* Footer */
+  .footer-grid { grid-template-columns: 1fr; gap: 26px; padding-bottom: 34px; }
+  .footer-tagline { font-size: 12px; }
+  .footer-legal { font-size: 10px; }
+  .footer-col-heading { font-size: 9px; margin-bottom: 16px; }
+  .footer-nav-list a { font-size: 13px; }
+  .footer-contact-info { font-size: 12.5px; }
+  footer { padding: 40px 0 0; }
+  /* Glass cards — reduce border-radius on tiny screens */
+  .glass { border-radius: var(--radius-xl); }
+}
+
+/* ─── TINY MOBILE (< 360px) ─── */
+@media (max-width: 359px) {
+  .container { padding: 0 12px; }
+  .hero-title { font-size: clamp(30px, 12vw, 44px); }
+  .hero-subtitle { font-size: 13.5px; }
+  .btn-primary, .btn-secondary { font-size: 12.5px; padding: 12px 16px; }
+  .section-heading { font-size: clamp(22px, 9vw, 30px); }
+  .astat-number { font-size: 20px; }
+  .nav-inner { gap: 10px; }
+}
+
+/* ─── TOUCH DEVICE OPTIMIZATIONS ─── */
+@media (hover: none) and (pointer: coarse) {
+  /* Remove transform lifts on touch — no hover state */
+  .glass:hover,
+  .svc-card:hover,
+  .team-card:hover { 
+    transform: none !important; 
+    box-shadow: var(--glass-shadow) !important;
+    border-color: var(--glass-border) !important;
+    background: var(--glass-bg) !important;
+  }
+  .btn-primary:hover,
+  .btn-secondary:hover { transform: none !important; }
+  .badge:hover { transform: none !important; box-shadow: none !important; }
+  .equip-tag:hover { 
+    color: rgba(255,255,255,0.55) !important;
+    border-color: rgba(255,255,255,0.07) !important;
+    background: rgba(255,255,255,0.04) !important;
+  }
+  /* Improve touch targets */
+  .btn-primary, .btn-secondary { min-height: 48px; }
+  .lang-btn { min-height: 36px; min-width: 36px; }
+  .nav-links a { padding: 8px 0; }
+  .badge { min-height: 44px; }
+  .overlay-link { min-height: 56px; display: flex; align-items: center; }
+}
+
+/* ─── LANDSCAPE ORIENTATION (mobile/tablet) ─── */
+@media (max-height: 560px) and (orientation: landscape) {
+  .hero-content { padding-top: 76px; padding-bottom: 40px; }
+  .hero-title { font-size: clamp(28px, 7vh, 52px); }
+  .hero-buttons { margin-bottom: 28px; }
+  .hero-stats { margin-bottom: 0; }
+  .nav-overlay { gap: 24px; overflow-y: auto; padding: 72px 0 32px; }
+  .nav-overlay .overlay-link { font-size: 24px; }
+}
+
+/* ─── HIGH-DPI / RETINA SCREENS ─── */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .glass { border-width: 0.5px; }
+  #progress-bar { height: 1.5px; }
+}
+
+/* ─── PRINT ─── */
+@media print {
+  .orb, #progress-bar, .hamburger, .nav-overlay, .hero-grid-bg { display: none !important; }
+  body { background: #fff; color: #000; }
+  .glass { background: #f5f5f5; border: 1px solid #ddd; box-shadow: none; }
+  #nav { position: static; background: #fff; border-bottom: 1px solid #ddd; }
+  .section-heading, .hero-title { color: #000; -webkit-text-fill-color: #000; background: none; }
+}
+
+/* ─── ACCESSIBILITY IMPROVEMENTS ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .orb { animation: none !important; }
+  .hero-label, .hero-title, .hero-subtitle, .hero-buttons, .hero-stats {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .animate-on-scroll { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+/* ─── FOCUS ACCESSIBILITY ─── */
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible {
+  outline-offset: 4px;
+  border-radius: 14px;
+}
+.lang-btn:focus-visible { border-radius: 7px; }
+
+/* ─── FLUID SECTION PADDING SYSTEM ─── */
+#apropos, #equipe, #services, #references, #differences, #contact {
+  padding: var(--section-pad) 0;
+}
+@media (max-width: 768px) {
+  #apropos, #equipe, #services, #references, #differences, #contact {
+    padding: var(--section-pad-sm) 0;
+  }
+}
+
+/* ─── GLOBAL SAFE ZONES ─── */
+* { -webkit-tap-highlight-color: rgba(18, 229, 220, 0.15); }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+.container { max-width: var(--content-max, 1180px); }
+
+/* ─── ORBS: REDUCE ON MOBILE FOR PERF ─── */
+@media (max-width: 767px) {
+  .orb { filter: blur(60px); will-change: auto; animation: none; }
+  .orb-1 { width: 400px; height: 400px; top: -10%; left: -20%; }
+  .orb-2 { width: 350px; height: 350px; bottom: 0; right: -15%; }
+  .orb-3 { display: none; }
+}
+
+/* ─── MAINTENANCE BANNER RESPONSIVE ─── */
+#maintenance-banner { padding: clamp(48px, 7vw, 80px) 0 !important; }
+#maintenance-banner h2 { font-size: clamp(36px, 7vw, 88px) !important; }
+#maintenance-banner p { font-size: clamp(13px, 2vw, 18px) !important; }
+
+/* ─── SCROLLBAR STYLING ─── */
+.comparison-wrapper::-webkit-scrollbar { height: 4px; }
+.comparison-wrapper::-webkit-scrollbar-track { background: rgba(255,255,255,0.04); border-radius: 2px; }
+.comparison-wrapper::-webkit-scrollbar-thumb { background: rgba(18,229,220,0.3); border-radius: 2px; }
+
+/* ─── CONTACT VALUE EMAIL OVERFLOW ─── */
+.contact-value a[href^="mailto"] {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+/* ─── FORM PLACEHOLDER TEXT RESPONSIVE ─── */
+@media (max-width: 479px) {
+  .form-placeholder { border-style: dashed; border-radius: var(--radius-xl); }
+}
+
+/* ─── COMPARISON TABLE SCROLL HINT (MOBILE) ─── */
+@media (max-width: 767px) {
+  .comparison-wrapper {
+    position: relative;
+  }
+  .comparison-wrapper::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 32px;
+    background: linear-gradient(to right, transparent, rgba(5,11,20,0.6));
+    border-radius: 0 16px 16px 0;
+    pointer-events: none;
+  }
 }
   </style>
 </head>
